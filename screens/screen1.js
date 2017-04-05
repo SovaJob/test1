@@ -1,27 +1,42 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component} from 'react';
 import { View, Text, TouchableHighlight } from 'react-native';
 
 export default class MyScene extends Component {
-    static propTypes = {
-        title: PropTypes.string.isRequired,
-        onForward: PropTypes.func.isRequired,
-        onBack: PropTypes.func.isRequired,
-    }
+    constructor(props) {
+        super(props);
+        this.state = {
+            textTitle: "something",
+        };
+
+    };
     render() {
-        var color1;
-console.log(this.props.title);
-        if(this.props.title == "Scene 1")
+        console.log(this.props.sceneNum);
+        let color;
+        switch(this.props.sceneNum)
         {
-            color1 = "green";
-        }
-        else
-        {color1 = "red";}
+            case 0:
+            {
+                this.state.textTitle = "something" + 0;
+                color = "green";
+            }
+                break;
+            case 1:
+            {
+                this.state.textTitle = "something" + 1;
+                color = "red";
+            }
+                break;
+
+            default:
+            {
+                this.state.textTitle = "something";
+                color = "yellow";
+            }
+        };
 
         return (
-
-
-            <View style={{backgroundColor: color1}}>
-                <Text>Current Scene: { this.props.title }</Text>
+            <View style={{backgroundColor: color}}>
+                <Text>Current Scene: { this.state.textTitle }</Text>
                 <TouchableHighlight onPress={this.props.onForward}>
                     <Text>Tap me to load the next scene</Text>
                 </TouchableHighlight>
@@ -29,6 +44,6 @@ console.log(this.props.title);
                     <Text>Tap me to go back</Text>
                 </TouchableHighlight>
             </View>
-        )
+        );
     }
 }

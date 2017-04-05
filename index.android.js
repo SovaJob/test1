@@ -13,7 +13,7 @@ export default class AwesomeProject extends Component {
                 renderScene={(route, navigator) =>
                     <MyScene
                         title={route.title}
-
+                        sceneNum = {route.index}
                         // Function to call when a new scene should be displayed
                         onForward={ () => {
                             const nextIndex = route.index + 1;
